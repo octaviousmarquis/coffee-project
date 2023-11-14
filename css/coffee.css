@@ -1,0 +1,10 @@
+:root {
+    --backgroundcolor:#FCE8C6;
+   --box: #7B2C1F;
+}
+body{
+    background-color: var(--backgroundcolor);
+}
+h1{
+    display: flex;
+}
