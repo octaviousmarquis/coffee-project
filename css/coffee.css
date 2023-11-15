@@ -78,12 +78,15 @@ hr{
 .custom-dropdown {
     display: inline-block;
     position: absolute;
+    top: 89px;
+    left: 20px;
     width: 500px;
 
 }
 
 .dropdown {
-    background-color: black;
+
+    background-color: #a8cae8;
 color: #FCE8C6;
     background-size: 300px 300px;
     position: relative;
@@ -132,4 +135,25 @@ color: #FCE8C6;
 
 .custom-dropdown.open .options {
     max-height: 200px; /* Adjust the max-height as needed */
+}
+
+/*card style*/
+.card{
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+.coffee-add{
+    display: flex;
+    justify-content: space-evenly;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.card-img-top{
+    height: 167px;
+    width: 288px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
 }

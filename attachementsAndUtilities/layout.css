@@ -284,8 +284,9 @@ hr{
 .gap-50{
     gap: 50px;
 }
-
-
+.justify-content-center{
+    justify-content: center;
+}
 
 
 
