@@ -55,9 +55,9 @@ input[type="text"].fixed{
     background-image: url("/img/coffeeprojectimage1.webp");
     height: 400px;
     background-size: 100% 100%;
-
 }
-.horizontalrow{
+
+hr{
     text-align: center;
     margin: 0 auto;
     width: 80%;
@@ -77,8 +77,9 @@ input[type="text"].fixed{
 
 .custom-dropdown {
     display: inline-block;
-    position: relative;
+    position: absolute;
     width: 500px;
+
 }
 
 .dropdown {
