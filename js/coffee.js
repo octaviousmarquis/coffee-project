@@ -21,8 +21,9 @@ const addedCoffee = (coffeeAdded) => {
     newCard.classList.add("card");
     newCard.innerHTML =`
     <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
-    <div class="card-body ">
-    <h5 class="card-title">Coffee name</h5>
+    <div class="card-body">
+    <h5 class="card-title">${coffees[0].name}</h5>
+    ${coffees[0].roast}
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
     <div class="coffee-add">
@@ -38,11 +39,34 @@ add.addEventListener("click", ()=>{
     cardPlacement.appendChild(addedCoffee())
 })
 
+
+
 const searchinput = document.querySelector("#searchInput")
 searchinput.addEventListener("keydown", e =>{
-    console.log(e)
-  coffees.includes(searchinput)
+    let coffeepicked = document.createElement("div");
+    coffeepicked.classList.add("card");
+    coffeepicked.innerHTML =
+        `
+    <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
+    <div class="card-body ">
+    <h5 class="card-title">${e.name}</h5>
+    <p class="card-text">${e.roast}</p>
+    </div>
+    <div class="coffee-add">
+    <a href="#" class="add">Add</a>
+    <a href="#" class="card-link">Remove</a>
+    `;
+    return newCard;
 })
+
+const rendercoffecardbysearch =(coffes) =>{
+    for (let i =coffe.length; i >= 0; i--){
+        const coffeecard = rendercoffecardbysearch(coffes[i])
+        const cofp = document.querySelector(".cof")
+        cofp.appendChild(searchinput)
+
+    }
+}
 
 
 

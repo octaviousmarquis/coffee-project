@@ -67,7 +67,11 @@ hr{
 .test{
     height: 100dvh;
 }
-
+.main.container{
+    justify-content: center;
+    width: 600px;
+    flex-wrap: wrap;
+}
 
 
 
