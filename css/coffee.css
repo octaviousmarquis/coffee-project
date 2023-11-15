@@ -1,10 +1,39 @@
 :root {
     --backgroundcolor:#FCE8C6;
-   --box: #7B2C1F;
+   --box: saddlebrown;
 }
-body{
+body {
     background-color: var(--backgroundcolor);
 }
 h1{
-    display: flex;
+    font-size: 3rem;
+}
+label{
+    margin-left: 100px;
+    padding-top: 10px;
+}
+h2{
+    margin-top: 65px;
+    margin-left: 240px;
+}
+select{
+    margin-left: 265px;
+    appearance: none;
+    text-align: center;
+    font-size: 18px;
+    width: 80px;
+    height: 40px;
+    border-radius: 999px;
+    border: 2px solid;
+    background-color: var(--box);
+}
+input{
+    text-align: center;
+    height: 30px;
+    width: 200px;
+    border: 2px solid;
+    border-radius: 999px;
+    position: absolute;
+    right: 45px;
+    top: 25px;
 }

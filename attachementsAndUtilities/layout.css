@@ -6,6 +6,15 @@
 .d-flex{
     display: flex;
 }
+.row{
+    display: flex;
+}
+.column{
+    display: flex;
+}
+li{
+    list-style: none;
+}
 body{
     margin: 0;
     padding:  0;
