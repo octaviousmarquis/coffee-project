@@ -90,8 +90,9 @@ hr{
 
 .dropdown {
 
-    background-color: #a8cae8;
-color: #FCE8C6;
+    background-image: url("/img/Screenshot 2023-11-15 at 3.58.31 PM.jpeg");
+    background-position: bottom;
+    color: black;
     background-size: 300px 300px;
     position: relative;
     display: inline-block;
@@ -161,10 +162,31 @@ a{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px
 }
+.row.hey{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
 .card{
-    width: 18rem
+    width: 18rem;
+    margin-bottom: 20px;
 }
 .hr2{
     width: 60%;
+}
+#coffeeContainer{
+    display: flex;
+    width: 1000px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+a:hover{
+    position: relative;
+    bottom: 5px;
+    font-size: 30px;
+}
+.cardhr{
+    width: 98%;
+    border: 1px solid black;
 }

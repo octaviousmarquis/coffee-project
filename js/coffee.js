@@ -1,72 +1,78 @@
 let coffeeAdded = [];
 const coffees = [
-    { id: 1, name: "Light City", roast: "light" },
-    { id: 2, name: "Half City", roast: "light" },
-    { id: 3, name: "Cinnamon", roast: "light" },
-    { id: 4, name: "City", roast: "medium" },
-    { id: 5, name: "American", roast: "medium" },
-    { id: 6, name: "Breakfast", roast: "medium" },
-    { id: 7, name: "High", roast: "dark" },
-    { id: 8, name: "Continental", roast: "dark" },
-    { id: 9, name: "New Orleans", roast: "dark" },
-    { id: 10, name: "European", roast: "dark" },
-    { id: 11, name: "Espresso", roast: "dark" },
-    { id: 12, name: "Viennese", roast: "dark" },
-    { id: 13, name: "Italian", roast: "dark" },
-    { id: 14, name: "French", roast: "dark" },
+    { id: 1, name: "Light City", roast: "Light" },
+    { id: 2, name: "Half City", roast: "Light" },
+    { id: 3, name: "Cinnamon", roast: "Light" },
+    { id: 4, name: "City", roast: "Medium" },
+    { id: 5, name: "American", roast: "Medium" },
+    { id: 6, name: "Breakfast", roast: "Medium" },
+    { id: 7, name: "High", roast: "Dark" },
+    { id: 8, name: "Continental", roast: "Dark" },
+    { id: 9, name: "New Orleans", roast: "Dark" },
+    { id: 10, name: "European", roast: "Dark" },
+    { id: 11, name: "Espresso", roast: "Dark" },
+    { id: 12, name: "Viennese", roast: "Dark" },
+    { id: 13, name: "Italian", roast: "Dark" },
+    { id: 14, name: "French", roast: "Dark" },
 ];
 
-const addedCoffee = (coffeeAdded) => {
-    const newCard = document.createElement("div")
-    newCard.classList.add("card");
-    newCard.innerHTML =`
-    <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
-    <div class="card-body">
-    <h5 class="card-title">${coffees[0].name}</h5>
-    ${coffees[0].roast}
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <div class="coffee-add">
-    <a href="#" class="add">Add</a>
-    <a href="#" class="card-link">Remove</a>
+
+const searchInput = document.querySelector("#searchInput");
+const coffeeContainer = document.querySelector('#coffeeContainer');
+
+const createCoffeeElement = (coffee) => {
+    let div = document.createElement("div");
+    div.classList.add("card");
+    div.innerHTML = `
+        <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
+        <div>${coffee.name}</div>
+        <hr class="cardhr">
+        <div>${coffee.roast} Roast</div>
+        <hr class="cardhr">
+        <a href="#" class="add"><em>Add me</em></a>
     `;
-    return newCard;
-}
+    return div;
+};
 
-let add  = document.querySelector('.add')
-const cardPlacement = document.querySelector('.house')
-add.addEventListener("click", ()=>{
-    cardPlacement.appendChild(addedCoffee())
-})
-
-
-
-const searchinput = document.querySelector("#searchInput")
-searchinput.addEventListener("keydown", e =>{
-    let coffeepicked = document.createElement("div");
-    coffeepicked.classList.add("card");
-    coffeepicked.innerHTML =
-        `
-    <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
-    <div class="card-body ">
-    <h5 class="card-title">${e.name}</h5>
-    <p class="card-text">${e.roast}</p>
-    </div>
-    <div class="coffee-add">
-    <a href="#" class="add">Add</a>
-    <a href="#" class="card-link">Remove</a>
-    `;
-    return newCard;
-})
-
-const rendercoffecardbysearch =(coffes) =>{
-    for (let i =coffe.length; i >= 0; i--){
-        const coffeecard = rendercoffecardbysearch(coffes[i])
-        const cofp = document.querySelector(".cof")
-        cofp.appendChild(searchinput)
-
+const renderCoffees = (coffees, target) => {
+    // Clear container before inserting new coffee cards
+    target.innerHTML = "";
+    for (let i = coffees.length - 1; i >= 0; i--) {
+        const coffeeElement = createCoffeeElement(coffees[i]);
+        target.appendChild(coffeeElement);
     }
+};
+
+const searchCoffee = () =>{
+    const searchValue = searchInput.value.toLowerCase();
+    coffeeContainer.innerHTML = ''; // Clear previous results
+
+    // Filter coffees array based on the search input
+    const filteredCoffee = coffees.filter( coffee =>
+        coffee.name.toLowerCase().includes(searchValue) ||
+        coffee.roast.toLowerCase().includes(searchValue)
+    );
+
+    // Display coffee cards
+    filteredCoffee.forEach(coffee => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+         <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
+        <div>${coffee.name}</div>
+        <hr class="cardhr">
+        <div>${coffee.roast} Roast</div>
+        <hr class="cardhr">
+        <a href="#" class="add"><em>Add me</em></a>
+        `;
+        coffeeContainer.appendChild(card);
+    });
 }
+
+searchInput.addEventListener("input", searchCoffee);
+
+// Initial display without any search
+renderCoffees(coffees, coffeeContainer);
 
 
 
