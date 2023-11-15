@@ -27,7 +27,8 @@ select{
     border: 2px solid;
     background-color: var(--box);
 }
-input{
+
+input[type="text"]{
     text-align: center;
     height: 30px;
     width: 200px;
@@ -36,4 +37,98 @@ input{
     position: absolute;
     right: 45px;
     top: 25px;
+    transition: all 0.5s ease;
+}
+input[type="text"].fixed{
+    position: fixed;
+    top: 50px;
+    right: -70px;
+    transform: translateX(-50%);
+    width: 200px; /* Set a specific width for the input in fixed position */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+
+
+}
+
+
+.header{
+    background-image: url("/img/coffeeprojectimage1.webp");
+    height: 400px;
+    background-size: 100% 100%;
+
+}
+.horizontalrow{
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid #8B4513FF;
+
+}
+.test{
+    height: 100dvh;
+}
+
+
+
+
+
+
+
+
+.custom-dropdown {
+    display: inline-block;
+    position: relative;
+    width: 500px;
+}
+
+.dropdown {
+    background-color: black;
+color: #FCE8C6;
+    background-size: 300px 300px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adjust the width as needed */
+}
+
+.selected-option {
+    padding: 10px;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 5px 5px;
+    transition: max-height 0.3s ease-out;
+}
+
+.options li {
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s;
+}
+
+.options li:hover {
+    background-color: #f0f0f0;
+}
+
+.custom-dropdown.open .options {
+    max-height: 200px; /* Adjust the max-height as needed */
 }
