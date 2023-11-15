@@ -157,3 +157,10 @@ a{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px
 }
+
+.card{
+    width: 18rem
+}
+.hr2{
+    width: 60%;
+}

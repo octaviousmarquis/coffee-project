@@ -18,10 +18,10 @@ const coffees = [
 
 const addedCoffee = (coffeeAdded) => {
     const newCard = document.createElement("div")
-    newCard.classList.add("card")
+    newCard.classList.add("card");
     newCard.innerHTML =`
     <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
-    <div class="card-body">
+    <div class="card-body ">
     <h5 class="card-title">Coffee name</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
@@ -36,6 +36,12 @@ let add  = document.querySelector('.add')
 const cardPlacement = document.querySelector('.house')
 add.addEventListener("click", ()=>{
     cardPlacement.appendChild(addedCoffee())
+})
+
+const searchinput = document.querySelector("#searchInput")
+searchinput.addEventListener("keydown", e =>{
+    console.log(e)
+  coffees.includes(searchinput)
 })
 
 
