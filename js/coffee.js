@@ -19,6 +19,7 @@ const coffees = [
 
 const searchInput = document.querySelector("#searchInput");
 const coffeeContainer = document.querySelector('#coffeeContainer');
+const checkOut = document.querySelector('.added')
 
 const createCoffeeElement = (coffee) => {
     let div = document.createElement("div");
@@ -29,15 +30,17 @@ const createCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class="add"><em>Add me</em></a>
+        <a href="#" class=""><em>Add me</em></a>
     `;
     return div;
 };
+
 
 const renderCoffees = (coffees, target) => {
     // Clear container before inserting new coffee cards
     target.innerHTML = "";
     for (let i = coffees.length - 1; i >= 0; i--) {
+        console.log(i)
         const coffeeElement = createCoffeeElement(coffees[i]);
         target.appendChild(coffeeElement);
     }
@@ -63,7 +66,7 @@ const searchCoffee = () =>{
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class="add"><em>Add me</em></a>
+        <a href="#" class=""><em>Add me</em></a>
         `;
         coffeeContainer.appendChild(card);
     });
@@ -74,10 +77,31 @@ searchInput.addEventListener("input", searchCoffee);
 // Initial display without any search
 renderCoffees(coffees, coffeeContainer);
 
+const addMe = document.querySelectorAll('a')
+
+for (let i = coffees.length - 1; i >= 0; i--) {
+    let anchor = addMe[i];
+        console.log(i)
+    anchor.addEventListener("click", (e) =>{
+        let anchor = e.target
+        let checkOuted = anchor.parentElement.parentElement
+        checkOut.className = 'card'
+        checkOut.innerHTML = `
+        <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
+        <div>${coffees[i].name}</div>
+        <hr class="cardhr">
+        <div>${coffees[i].roast} Roast</div>
+        <hr class="cardhr">
+        <a href="#" class=""><em>Add me</em></a>
+    `;
+        console.log(checkOuted)
+        return;
+    })
+}
 
 
 
-
+// renderCoffees(coffees, checkOut)
 
 
 
