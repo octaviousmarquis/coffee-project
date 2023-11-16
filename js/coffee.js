@@ -16,15 +16,12 @@ const coffees = [
     { id: 14, name: "French", roast: "Dark" },
 ];
 
-
-const searchInput = document.querySelector("#searchInput");
-const coffeeContainer = document.querySelector('#coffeeContainer');
 const checkOut = document.querySelector('.added')
-
+// coffee card element
 const createCoffeeElement = (coffee) => {
-    let div = document.createElement("div");
-    div.classList.add("card");
-    div.innerHTML = `
+    let coffeeElement = document.createElement("div");
+    coffeeElement.classList.add("card");
+    coffeeElement.innerHTML = `
         <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
         <div>${coffee.name}</div>
         <hr class="cardhr">
@@ -32,98 +29,59 @@ const createCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <a href="#" class=""><em>Add me</em></a>
     `;
-    return div;
+    // add event listener here
+    const anchor = coffeeElement.querySelector('a');
+    anchor.addEventListener('click', e=>{
+        createFavCoffeeElement(coffee);
+        coffeeAdded.push(coffee);
+    })
+    return coffeeElement;
 };
-
 
 const renderCoffees = (coffees, target) => {
     // Clear container before inserting new coffee cards
     target.innerHTML = "";
-    for (let i = coffees.length - 1; i >= 0; i--) {
-        console.log(i)
+    for (let i = 0; i < coffees.length; i++) {
         const coffeeElement = createCoffeeElement(coffees[i]);
         target.appendChild(coffeeElement);
     }
 };
 
-const searchCoffee = () =>{
+//search input for coffees
+const updateCoffees = (coffees, roastValue) =>{
     const searchValue = searchInput.value.toLowerCase();
+    const coffeeContainer = document.querySelector('#coffeeContainer');
     coffeeContainer.innerHTML = ''; // Clear previous results
-
     // Filter coffees array based on the search input
-    const filteredCoffee = coffees.filter( coffee =>
-        coffee.name.toLowerCase().includes(searchValue) ||
-        coffee.roast.toLowerCase().includes(searchValue)
-    );
+    const filteredCoffees = coffees.filter( coffee => {
+        if (!searchValue) {
+            return true;
+        }
+        return coffee.name.toLowerCase().includes(searchValue) || coffee.roast.toLowerCase().includes(searchValue)
+    }).filter(coffee => {
+        if(!roastValue) {
+            return true;
+        }
+        return coffee.roast.toLowerCase() === roastValue.toLowerCase();
+    });
+    // Display singular coffee card
+    renderCoffees(filteredCoffees, coffeeContainer);
+}
 
-    // Display coffee cards
-    filteredCoffee.forEach(coffee => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-         <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
+const createFavCoffeeElement = (coffee) => {
+    const favCoffeeElement = document.createElement('div');
+    favCoffeeElement.classList.add('card');
+    favCoffeeElement.innerHTML = `
+        <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
         <div>${coffee.name}</div>
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class=""><em>Add me</em></a>
-        `;
-        coffeeContainer.appendChild(card);
-    });
-}
-
-searchInput.addEventListener("input", searchCoffee);
-
-// Initial display without any search
-renderCoffees(coffees, coffeeContainer);
-
-const addMe = document.querySelectorAll('a')
-
-for (let i = coffees.length - 1; i >= 0; i--) {
-    let anchor = addMe[i];
-        console.log(i)
-    anchor.addEventListener("click", (e) =>{
-        let anchor = e.target
-        let checkOuted = anchor.parentElement.parentElement
-        checkOut.className = 'card'
-        checkOut.innerHTML = `
-        <img src="img/A-Comprehensive-Guide-to-Ethiopian-Coffee-Peach-Coffee-Roasters-22427854.webp" class="card-img-top" alt="...">
-        <div>${coffees[i].name}</div>
-        <hr class="cardhr">
-        <div>${coffees[i].roast} Roast</div>
-        <hr class="cardhr">
-        <a href="#" class=""><em>Add me</em></a>
+        <a href="#" class=""><em>Remove</em></a>
     `;
-        console.log(checkOuted)
-        return;
-    })
+    const favCoffeesContainer = document.querySelector('.added');
+    favCoffeesContainer.appendChild(favCoffeeElement);
 }
-
-
-
-// renderCoffees(coffees, checkOut)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 window.addEventListener('scroll', function() {
     var inputElement = document.getElementById('searchInput');
@@ -135,18 +93,13 @@ window.addEventListener('scroll', function() {
     }
 });
 
-
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
+(()=>{
+    updateCoffees(coffees);
     const dropdown = document.querySelector('.custom-dropdown');
     dropdown.addEventListener('click',  () => {
         dropdown.classList.toggle('open');
     });
-
     const options = document.querySelectorAll('.options li');
-
     options.forEach(function (option) {
         option.addEventListener('click',  () => {
             const selectedOption = option.textContent;
@@ -157,33 +110,42 @@ document.addEventListener('DOMContentLoaded', function () {
             const changemypicmedium = document.querySelector("#medium")
             const changemypicdark = document.querySelector("#dark")
 
-
             if (option === changemypiclight) {
                 // Set the background image of the dropdown
                 dropdown1.style.backgroundImage = 'url("/img/6DFF66DF-8D4B-4616-BBB9-820D26FE16A4_27b13bc2-7e35-4951-a350-4b2579129b5a.webp")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
                 dropdown1.style.color = "#FCE8C6"
-            } else if (option === changemypicmedium){
+
+            }
+            else if (option === changemypicmedium){
                 dropdown1.style.backgroundImage = 'url("/img/Roasted-coffee-beans.jpg")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
                 dropdown1.style.color = "#FCE8C6"
-
-            } else if (option === changemypicdark) {
+            }
+            else if (option === changemypicdark) {
                 dropdown1.style.backgroundImage = 'url("/img/dark-roast-coffee.jpg")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
                 dropdown1.style.color = "#FCE8C6"
-            } else {
+            }
+            else {
                 // Reset background image for other options
                 dropdownq.style.backgroundImage = 'none';
             }
+            updateCoffees(coffees, selectedOption);
         });
     });
-});
+    // anchor is being pulling from innerhtml on line 81
+    const addMe = document.querySelectorAll('a')
+    const searchInput = document.querySelector("#searchInput");
+    const coffeeContainer = document.querySelector('#coffeeContainer');
 
-
+    searchInput.addEventListener("input", e => {
+        updateCoffees(coffees);
+    });
+})();
 
 
 
