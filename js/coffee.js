@@ -16,6 +16,9 @@ const coffees = [
     { id: 14, name: "French", roast: "Dark" },
 ];
 
+
+
+
 const checkOut = document.querySelector('.added')
 // coffee card element
 const createCoffeeElement = (coffee) => {
@@ -77,11 +80,19 @@ const createFavCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class=""><em>Remove</em></a>
+        <a href="#" class="remove-link"><em>Remove</em></a>
     `;
     const favCoffeesContainer = document.querySelector('.added');
     favCoffeesContainer.appendChild(favCoffeeElement);
-}
+    const removeLink = favCoffeeElement.querySelector('.remove-link');
+
+    removeLink.addEventListener('click',  (event) =>{
+        // Handle the removal logic here
+        event.preventDefault(); // Prevent the default behavior of the anchor element
+        // Handle the removal logic here
+        favCoffeeElement.remove();
+    });
+};
 
 window.addEventListener('scroll', function() {
     var inputElement = document.getElementById('searchInput');
