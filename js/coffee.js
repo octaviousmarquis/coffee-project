@@ -1,22 +1,26 @@
 let coffeeAdded = [];
 const coffees = [
-    { id: 1, name: "Light City", roast: "Light" },
-    { id: 2, name: "Half City", roast: "Light" },
-    { id: 3, name: "Cinnamon", roast: "Light" },
-    { id: 4, name: "City", roast: "Medium" },
-    { id: 5, name: "American", roast: "Medium" },
-    { id: 6, name: "Breakfast", roast: "Medium" },
-    { id: 7, name: "High", roast: "Dark" },
-    { id: 8, name: "Continental", roast: "Dark" },
-    { id: 9, name: "New Orleans", roast: "Dark" },
-    { id: 10, name: "European", roast: "Dark" },
-    { id: 11, name: "Espresso", roast: "Dark" },
-    { id: 12, name: "Viennese", roast: "Dark" },
-    { id: 13, name: "Italian", roast: "Dark" },
-    { id: 14, name: "French", roast: "Dark" },
+    { id: 1, name: "Light City", roast: "Light", price:"25"},
+    { id: 2, name: "Half City", roast: "Light", price:"30"},
+    { id: 3, name: "Cinnamon", roast: "Light", price:"15"},
+    { id: 4, name: "City", roast: "Medium", price:"7"},
+    { id: 5, name: "American", roast: "Medium", price:"1"},
+    { id: 6, name: "Breakfast", roast: "Medium", price:"10"},
+    { id: 7, name: "High", roast: "Dark", price:"15"},
+    { id: 8, name: "Continental", roast: "Dark", price:"10"},
+    { id: 9, name: "New Orleans", roast: "Dark", price:"40"},
+    { id: 10, name: "European", roast: "Dark", price:"45"},
+    { id: 11, name: "Espresso", roast: "Dark", price:"2000"},
+    { id: 12, name: "Viennese", roast: "Dark", price:"15"},
+    { id: 13, name: "Italian", roast: "Dark", price:"25"},
+    { id: 14, name: "French", roast: "Dark", price:"25"},
 ];
 
+
+
+
 const checkOut = document.querySelector('.added')
+const hrDisplay = document.querySelector('.toggle')
 // coffee card element
 const createCoffeeElement = (coffee) => {
     let coffeeElement = document.createElement("div");
@@ -27,13 +31,17 @@ const createCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class=""><em>Add me</em></a>
+        <div>$${coffee.price}</div>
+        <hr class="cardhr">
+        <br>
+        <button class="addBtn"><em>Add me</em></button>
     `;
+
     // add event listener here
-    const anchor = coffeeElement.querySelector('a');
-    anchor.addEventListener('click', e=>{
+    const addBtn = coffeeElement.querySelector('.addBtn');
+    addBtn.addEventListener('click', e=>{
         createFavCoffeeElement(coffee);
-        coffeeAdded.push(coffee);
+        hrDisplay.classList.remove('toggle')
     })
     return coffeeElement;
 };
@@ -77,12 +85,23 @@ const createFavCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
-        <a href="#" class=""><em>Remove</em></a>
+        <div>$${coffee.price}</div>
+        <hr class="cardhr">    
+        <br>
+        <a href="#" class="remove-link"><em>Remove</em></a>
     `;
     const favCoffeesContainer = document.querySelector('.added');
     favCoffeesContainer.appendChild(favCoffeeElement);
-}
+    const removeLink = favCoffeeElement.querySelector('.remove-link');
 
+    removeLink.addEventListener('click',  (event) =>{
+        // Handle the removal logic here
+        event.preventDefault(); // Prevent the default behavior of the anchor element
+        // Handle the removal logic here
+        favCoffeeElement.remove();
+        hrDisplay.classList.add('toggle')
+});
+console.log(coffeeAdded.length)
 window.addEventListener('scroll', function() {
     var inputElement = document.getElementById('searchInput');
     var scrollPosition = window.scrollY;
@@ -146,9 +165,3 @@ window.addEventListener('scroll', function() {
         updateCoffees(coffees);
     });
 })();
-
-
-
-
-
-

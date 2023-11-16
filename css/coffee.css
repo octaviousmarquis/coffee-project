@@ -181,7 +181,13 @@ a{
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-a:hover{
+.added{
+    display: flex;
+    justify-content: space-evenly;
+    width: 1000px;
+    flex-wrap: wrap;
+}
+.addBtn:hover{
     position: relative;
     bottom: 5px;
     font-size: 30px;
@@ -189,4 +195,12 @@ a:hover{
 .cardhr{
     width: 98%;
     border: 1px solid black;
+}
+.addBtn{
+    background-color: var(--backgroundcolor);
+    border: none;
+}
+
+.toggle{
+    display: none;
 }
