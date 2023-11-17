@@ -1,4 +1,4 @@
-let coffeeAdded = [];
+// list of coffees
 const coffees = [
     { id: 1, name: "Light City", roast: "Light", price:"25"},
     { id: 2, name: "Half City", roast: "Light", price:"30"},
@@ -14,13 +14,9 @@ const coffees = [
     { id: 12, name: "Viennese", roast: "Dark", price:"15"},
     { id: 13, name: "Italian", roast: "Dark", price:"25"},
     { id: 14, name: "French", roast: "Dark", price:"25"},
+    { id: 15, name: "Davis", roast: "extra Dark", price:"99999999"},
 ];
 
-
-
-
-const checkOut = document.querySelector('.added')
-const hrDisplay = document.querySelector('.toggle')
 // coffee card element
 const createCoffeeElement = (coffee) => {
     let coffeeElement = document.createElement("div");
@@ -33,11 +29,25 @@ const createCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>$${coffee.price}</div>
         <hr class="cardhr">
-        <br>
-        <button class="addBtn"><em>Add me</em></button>
+        <a class="addBtn">
+        <div class="editme" id="starteffect">
+        <button class="but"><em class="color me">Add me</em></button>
+        </div>
+        </a>
     `;
+    //hover effect
+    const btnn = coffeeElement.querySelector(".but")
+    const starteffethover = coffeeElement.querySelector("#starteffect")
+    starteffethover.addEventListener("mouseover", ()=>{
+        btnn.classList.add("hoverme")
+    })
 
-    // add event listener here
+    //end hover
+    const endeffethover = coffeeElement.querySelector(".starteffect")
+    starteffethover.addEventListener("mouseout", ()=>{
+        btnn.classList.remove("hoverme")
+    })
+
     const addBtn = coffeeElement.querySelector('.addBtn');
     addBtn.addEventListener('click', e=>{
         createFavCoffeeElement(coffee);
@@ -46,6 +56,7 @@ const createCoffeeElement = (coffee) => {
     return coffeeElement;
 };
 
+//rendering Coffees
 const renderCoffees = (coffees, target) => {
     // Clear container before inserting new coffee cards
     target.innerHTML = "";
@@ -75,7 +86,7 @@ const updateCoffees = (coffees, roastValue) =>{
     // Display singular coffee card
     renderCoffees(filteredCoffees, coffeeContainer);
 }
-
+//creates coffee
 const createFavCoffeeElement = (coffee) => {
     const favCoffeeElement = document.createElement('div');
     favCoffeeElement.classList.add('card');
@@ -86,25 +97,24 @@ const createFavCoffeeElement = (coffee) => {
         <div>${coffee.roast} Roast</div>
         <hr class="cardhr">
         <div>$${coffee.price}</div>
-        <hr class="cardhr">    
-        <br>
+        <hr class="cardhr">
         <a href="#" class="remove-link"><em>Remove</em></a>
     `;
     const favCoffeesContainer = document.querySelector('.added');
     favCoffeesContainer.appendChild(favCoffeeElement);
-    const removeLink = favCoffeeElement.querySelector('.remove-link');
 
-    removeLink.addEventListener('click',  (event) =>{
+    const removeLink = favCoffeeElement.querySelector('.remove-link');
+    removeLink.addEventListener('click',  (event) => {
         // Handle the removal logic here
         event.preventDefault(); // Prevent the default behavior of the anchor element
         // Handle the removal logic here
         favCoffeeElement.remove();
-        hrDisplay.classList.add('toggle')
-});
-console.log(coffeeAdded.length)
+    })
+}
+//scroll bar eventListner
 window.addEventListener('scroll', function() {
-    var inputElement = document.getElementById('searchInput');
-    var scrollPosition = window.scrollY;
+    let inputElement = document.getElementById('searchInput');
+    let scrollPosition = window.scrollY;
     if (scrollPosition > 75) {
         inputElement.classList.add('fixed');
     } else {
@@ -128,26 +138,27 @@ window.addEventListener('scroll', function() {
             const changemypiclight = document.querySelector("#light")
             const changemypicmedium = document.querySelector("#medium")
             const changemypicdark = document.querySelector("#dark")
+            const maintext = document.querySelector(".selected-option")
+            maintext.style.color = "#FCE8C6FF"
 
             if (option === changemypiclight) {
                 // Set the background image of the dropdown
                 dropdown1.style.backgroundImage = 'url("/img/6DFF66DF-8D4B-4616-BBB9-820D26FE16A4_27b13bc2-7e35-4951-a350-4b2579129b5a.webp")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
-                dropdown1.style.color = "#FCE8C6"
-
+                dropdown1.style.color = "#cc9057"
             }
             else if (option === changemypicmedium){
                 dropdown1.style.backgroundImage = 'url("/img/Roasted-coffee-beans.jpg")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
-                dropdown1.style.color = "#FCE8C6"
+                dropdown1.style.color = "#ca8666"
             }
             else if (option === changemypicdark) {
                 dropdown1.style.backgroundImage = 'url("/img/dark-roast-coffee.jpg")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
-                dropdown1.style.color = "#FCE8C6"
+                dropdown1.style.color = "#64281c"
             }
             else {
                 // Reset background image for other options
@@ -157,6 +168,7 @@ window.addEventListener('scroll', function() {
         });
     });
     // anchor is being pulling from innerhtml on line 81
+    const hrDisplay = document.querySelector('.toggle')
     const addMe = document.querySelectorAll('a')
     const searchInput = document.querySelector("#searchInput");
     const coffeeContainer = document.querySelector('#coffeeContainer');
