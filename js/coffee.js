@@ -1,4 +1,4 @@
-// list of coffees
+
 const coffees = [
     { id: 1, name: "Light City", roast: "Light", price:"25"},
     { id: 2, name: "Half City", roast: "Light", price:"30"},
@@ -17,7 +17,6 @@ const coffees = [
     { id: 15, name: "Davis", roast: "extra Dark", price:"99999999"},
 ];
 
-// coffee card element
 const createCoffeeElement = (coffee) => {
     let coffeeElement = document.createElement("div");
     coffeeElement.classList.add("card");
@@ -29,25 +28,11 @@ const createCoffeeElement = (coffee) => {
         <hr class="cardhr">
         <div>$${coffee.price}</div>
         <hr class="cardhr">
-        <a class="addBtn">
-        <div class="editme" id="starteffect">
-        <button class="but"><em class="color me">Add me</em></button>
-        </div>
-        </a>
+        <button class="addBtn"><em>Add me</em></button>
     `;
-    //hover effect
-    const btnn = coffeeElement.querySelector(".but")
-    const starteffethover = coffeeElement.querySelector("#starteffect")
-    starteffethover.addEventListener("mouseover", ()=>{
-        btnn.classList.add("hoverme")
-    })
 
-    //end hover
-    const endeffethover = coffeeElement.querySelector(".starteffect")
-    starteffethover.addEventListener("mouseout", ()=>{
-        btnn.classList.remove("hoverme")
-    })
 
+    const hrDisplay = document.querySelector('.toggle')
     const addBtn = coffeeElement.querySelector('.addBtn');
     addBtn.addEventListener('click', e=>{
         createFavCoffeeElement(coffee);
@@ -56,7 +41,7 @@ const createCoffeeElement = (coffee) => {
     return coffeeElement;
 };
 
-//rendering Coffees
+
 const renderCoffees = (coffees, target) => {
     // Clear container before inserting new coffee cards
     target.innerHTML = "";
@@ -66,7 +51,7 @@ const renderCoffees = (coffees, target) => {
     }
 };
 
-//search input for coffees
+
 const updateCoffees = (coffees, roastValue) =>{
     const searchValue = searchInput.value.toLowerCase();
     const coffeeContainer = document.querySelector('#coffeeContainer');
@@ -83,10 +68,9 @@ const updateCoffees = (coffees, roastValue) =>{
         }
         return coffee.roast.toLowerCase() === roastValue.toLowerCase();
     });
-    // Display singular coffee card
     renderCoffees(filteredCoffees, coffeeContainer);
 }
-//creates coffee
+
 const createFavCoffeeElement = (coffee) => {
     const favCoffeeElement = document.createElement('div');
     favCoffeeElement.classList.add('card');
@@ -105,13 +89,10 @@ const createFavCoffeeElement = (coffee) => {
 
     const removeLink = favCoffeeElement.querySelector('.remove-link');
     removeLink.addEventListener('click',  (event) => {
-        // Handle the removal logic here
-        event.preventDefault(); // Prevent the default behavior of the anchor element
-        // Handle the removal logic here
+        event.preventDefault();
         favCoffeeElement.remove();
     })
 }
-//scroll bar eventListner
 window.addEventListener('scroll', function() {
     let inputElement = document.getElementById('searchInput');
     let scrollPosition = window.scrollY;
@@ -142,7 +123,6 @@ window.addEventListener('scroll', function() {
             maintext.style.color = "#FCE8C6FF"
 
             if (option === changemypiclight) {
-                // Set the background image of the dropdown
                 dropdown1.style.backgroundImage = 'url("/img/6DFF66DF-8D4B-4616-BBB9-820D26FE16A4_27b13bc2-7e35-4951-a350-4b2579129b5a.webp")'; // Replace with your image path
                 dropdown1.style.backgroundSize = "cover";
                 dropdown1.style.backgroundRepeat = 'no-repeat';
@@ -161,14 +141,11 @@ window.addEventListener('scroll', function() {
                 dropdown1.style.color = "#64281c"
             }
             else {
-                // Reset background image for other options
                 dropdownq.style.backgroundImage = 'none';
             }
             updateCoffees(coffees, selectedOption);
         });
     });
-    // anchor is being pulling from innerhtml on line 81
-    const hrDisplay = document.querySelector('.toggle')
     const addMe = document.querySelectorAll('a')
     const searchInput = document.querySelector("#searchInput");
     const coffeeContainer = document.querySelector('#coffeeContainer');
