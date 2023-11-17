@@ -94,13 +94,14 @@ const createFavCoffeeElement = (coffee) => {
     favCoffeesContainer.appendChild(favCoffeeElement);
     const removeLink = favCoffeeElement.querySelector('.remove-link');
 
-    removeLink.addEventListener('click',  (event) =>{
+    removeLink.addEventListener('click',  (event) => {
         // Handle the removal logic here
         event.preventDefault(); // Prevent the default behavior of the anchor element
         // Handle the removal logic here
         favCoffeeElement.remove();
         hrDisplay.classList.add('toggle')
-});
+    });
+}
 console.log(coffeeAdded.length)
 window.addEventListener('scroll', function() {
     var inputElement = document.getElementById('searchInput');
